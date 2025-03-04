@@ -9,14 +9,17 @@ import { SITE_METADATA } from '~/data/site-metadata'
 import { PostBanner } from '~/layouts/post-banner'
 import { PostLayout } from '~/layouts/post-layout'
 import { PostSimple } from '~/layouts/post-simple'
+import { CustomLayout } from '~/layouts/custom-layout'
 import { allCoreContent, coreContent } from '~/utils/contentlayer'
 import { sortPosts } from '~/utils/misc'
 
 const DEFAULT_LAYOUT = 'PostLayout'
+const CUSTOM_LAYOUT = 'CustomLayout'
 const LAYOUTS = {
   PostSimple,
   PostLayout,
   PostBanner,
+  CustomLayout,
 }
 
 export async function generateMetadata(props: {
@@ -101,8 +104,11 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
       name: author.name,
     }
   })
-  let Layout = LAYOUTS[post.layout || DEFAULT_LAYOUT]
 
+  let Layout = LAYOUTS[post.layout || DEFAULT_LAYOUT]
+  if (post.slug == 'overview') {
+    Layout = LAYOUTS[CUSTOM_LAYOUT]
+  }
   return (
     <>
       <script

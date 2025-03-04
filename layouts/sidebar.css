@@ -1,0 +1,27 @@
+/* Ẩn scrollbar mặc định nhưng vẫn giữ không gian */
+.scrollbar-hidden {
+  overflow: auto;
+  scrollbar-width: thin;
+  -ms-overflow-style: none;
+}
+
+/* Thanh cuộn mặc định ẩn đi */
+.scrollbar-hidden::-webkit-scrollbar {
+  width: 8px;
+  opacity: 0;
+}
+
+/* Thanh cuộn trong suốt khi không hover */
+.scrollbar-hidden::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+/* Khi hover, thanh cuộn xuất hiện */
+.scrollbar-hidden:hover::-webkit-scrollbar {
+  opacity: 1;
+}
+
+.scrollbar-hidden:hover::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 4px;
+}
